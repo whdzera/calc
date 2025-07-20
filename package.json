@@ -1,0 +1,14 @@
+{
+  "name": "calc-jekyll-stimulus",
+  "version": "1.0.0",
+  "description": "calculator built with Jekyll and Stimulus",
+  "author": "whdzera",
+  "license": "MIT",
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.8",
+    "vite": "^6.3.5"
+  }
+}

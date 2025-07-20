@@ -1,0 +1,14 @@
+title: Calc
+email: whdzera@example.com
+description: >- 
+  A simple calculator built with Jekyll and Stimulus.
+baseurl: "/calc" 
+url: ""
+twitter_username: jekyllrb
+github_username:  jekyll
+
+plugins:
+  - jekyll-feed
+
+include:
+  - app
