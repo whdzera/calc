@@ -2,17 +2,15 @@
 layout: default
 ---
 
-<div
-  class="w-full max-w-sm transform hover:scale-105 transition-all duration-500"
->
+<div class="w-full max-w-sm transform transition-all duration-500">
   <!-- Calculator Container -->
   <div
-    class="bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-[2rem] p-8 shadow-2xl hover:shadow-purple-500/20 transition-all duration-500"
+    class="bg-white/30 dark:bg-black/20 backdrop-blur-xl border border-white/30 dark:border-white/10 rounded-[2rem] p-8 shadow-xl hover:shadow-purple-500/20 transition-all duration-500"
   >
     <div data-controller="calculator" class="space-y-6">
       <!-- Display -->
       <div
-        class="bg-gradient-to-br from-gray-800/90 to-gray-900/90 dark:from-black/90 dark:to-gray-900/90 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-inner"
+        class="bg-gradient-to-br from-slate-700/90 to-slate-800/90 dark:from-black/90 dark:to-gray-900/90 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-inner"
       >
         <div class="text-right">
           <div
@@ -30,25 +28,20 @@ layout: default
 
       <!-- Buttons Grid -->
       <div class="grid grid-cols-4 gap-4">
-        <!-- Row 1 -->
+        <!-- Clear Button -->
         <button
           data-action="click->calculator#clear"
-          class="col-span-2 bg-gradient-to-br from-rose-500/90 to-red-600/90 hover:from-rose-400 hover:to-red-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-red-500/20"
+          class="col-span-2 cursor-pointer bg-gradient-to-br from-rose-500/90 to-red-600/90 hover:from-rose-400 hover:to-red-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-red-500/20"
         >
           AC
         </button>
+
+        <!-- Backspace Button -->
         <button
           data-action="click->calculator#backspace"
-          class="bg-gradient-to-br from-amber-500/90 to-orange-600/90 hover:from-amber-400 hover:to-orange-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-orange-500/20"
+          class="cursor-pointer bg-gradient-to-br from-amber-500/90 to-orange-600/90 hover:from-amber-400 hover:to-orange-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-orange-500/20"
         >
           ⌫
-        </button>
-        <button
-          data-action="click->calculator#inputOperator"
-          data-value="/"
-          class="bg-gradient-to-br from-blue-500/90 to-indigo-600/90 hover:from-blue-400 hover:to-indigo-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-blue-500/20 text-xl"
-        >
-          ÷
         </button>
 
         <!-- Number Buttons -->
@@ -56,7 +49,7 @@ layout: default
         <button
           data-action="click->calculator#inputNumber"
           data-value="{{ number }}"
-          class="bg-white/10 dark:bg-white/5 hover:bg-white/20 dark:hover:bg-white/10 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl text-lg"
+          class="cursor-pointer bg-white/20 dark:bg-white/5 hover:bg-white/30 dark:hover:bg-white/10 text-slate-700 dark:text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl text-lg"
         >
           {{ number }}
         </button>
@@ -67,29 +60,34 @@ layout: default
         <button
           data-action="click->calculator#inputOperator"
           data-value="{{ op.value }}"
-          class="bg-gradient-to-br from-blue-500/90 to-indigo-600/90 hover:from-blue-400 hover:to-indigo-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-blue-500/20 text-xl"
+          class="cursor-pointer bg-gradient-to-br from-blue-500/90 to-indigo-600/90 hover:from-blue-400 hover:to-indigo-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-blue-500/20 text-xl"
         >
           {{ op.symbol }}
         </button>
         {% endfor %}
 
         <!-- Bottom Row -->
+        <!-- Zero Button -->
         <button
           data-action="click->calculator#inputNumber"
           data-value="0"
-          class="col-span-2 bg-white/10 dark:bg-white/5 hover:bg-white/20 dark:hover:bg-white/10 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl text-lg"
+          class="col-span-2 cursor-pointer bg-white/20 dark:bg-white/5 hover:bg-white/30 dark:hover:bg-white/10 text-slate-700 dark:text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl text-lg"
         >
           0
         </button>
+
+        <!-- Decimal Button -->
         <button
           data-action="click->calculator#inputDecimal"
-          class="bg-white/10 dark:bg-white/5 hover:bg-white/20 dark:hover:bg-white/10 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl text-lg"
+          class="cursor-pointer bg-white/20 dark:bg-white/5 hover:bg-white/30 dark:hover:bg-white/10 text-slate-700 dark:text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl text-lg"
         >
           .
         </button>
+
+        <!-- Equals Button -->
         <button
           data-action="click->calculator#calculate"
-          class="bg-gradient-to-br from-emerald-500/90 to-green-600/90 hover:from-emerald-400 hover:to-green-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-green-500/20 text-xl"
+          class="cursor-pointer bg-gradient-to-br from-emerald-500/90 to-green-600/90 hover:from-emerald-400 hover:to-green-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-green-500/20 text-xl"
         >
           =
         </button>
