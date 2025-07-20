@@ -3,24 +3,25 @@ layout: default
 ---
 
 <div
-  class="w-full max-w-sm transform hover:scale-105 transition-transform duration-300"
+  class="w-full max-w-sm transform hover:scale-105 transition-all duration-500"
 >
+  <!-- Calculator Container -->
   <div
-    class="bg-white/10 dark:bg-white/5 backdrop-blur-lg border border-white/20 rounded-3xl p-6 shadow-2xl hover:shadow-purple-500/20 transition-all duration-300"
+    class="bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-[2rem] p-8 shadow-2xl hover:shadow-purple-500/20 transition-all duration-500"
   >
-    <div data-controller="calculator" class="space-y-4">
+    <div data-controller="calculator" class="space-y-6">
       <!-- Display -->
       <div
-        class="bg-gradient-to-br from-gray-900/80 to-gray-800/80 dark:from-black/80 dark:to-gray-900/80 backdrop-blur-sm rounded-2xl p-6 border border-white/10 shadow-inner"
+        class="bg-gradient-to-br from-gray-800/90 to-gray-900/90 dark:from-black/90 dark:to-gray-900/90 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-inner"
       >
         <div class="text-right">
           <div
             data-calculator-target="history"
-            class="text-gray-400 dark:text-gray-500 text-sm h-6 overflow-hidden font-mono"
+            class="text-gray-400 dark:text-gray-500 text-sm h-6 overflow-hidden font-mono tracking-wider"
           ></div>
           <div
             data-calculator-target="display"
-            class="text-white text-4xl font-light mt-2 min-h-[2.5rem] flex items-end justify-end font-mono"
+            class="text-white text-5xl font-light mt-2 min-h-[3rem] flex items-end justify-end font-mono tracking-wider"
           >
             0
           </div>
@@ -28,135 +29,67 @@ layout: default
       </div>
 
       <!-- Buttons Grid -->
-      <div class="grid grid-cols-4 gap-3">
+      <div class="grid grid-cols-4 gap-4">
         <!-- Row 1 -->
         <button
           data-action="click->calculator#clear"
-          class="col-span-2 bg-gradient-to-br from-red-500/90 to-red-600/90 hover:from-red-400 hover:to-red-500 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm shadow-lg"
+          class="col-span-2 bg-gradient-to-br from-rose-500/90 to-red-600/90 hover:from-rose-400 hover:to-red-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-red-500/20"
         >
           AC
         </button>
         <button
           data-action="click->calculator#backspace"
-          class="bg-orange-500/80 hover:bg-orange-500 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm"
+          class="bg-gradient-to-br from-amber-500/90 to-orange-600/90 hover:from-amber-400 hover:to-orange-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-orange-500/20"
         >
           ⌫
         </button>
         <button
           data-action="click->calculator#inputOperator"
           data-value="/"
-          class="bg-blue-500/80 hover:bg-blue-500 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm text-xl"
+          class="bg-gradient-to-br from-blue-500/90 to-indigo-600/90 hover:from-blue-400 hover:to-indigo-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-blue-500/20 text-xl"
         >
           ÷
         </button>
 
-        <!-- Row 2 -->
+        <!-- Number Buttons -->
+        {% for number in (1..9) %}
         <button
           data-action="click->calculator#inputNumber"
-          data-value="7"
-          class="bg-white/20 hover:bg-white/30 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm"
+          data-value="{{ number }}"
+          class="bg-white/10 dark:bg-white/5 hover:bg-white/20 dark:hover:bg-white/10 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl text-lg"
         >
-          7
+          {{ number }}
         </button>
-        <button
-          data-action="click->calculator#inputNumber"
-          data-value="8"
-          class="bg-white/20 hover:bg-white/30 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm"
-        >
-          8
-        </button>
-        <button
-          data-action="click->calculator#inputNumber"
-          data-value="9"
-          class="bg-white/20 hover:bg-white/30 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm"
-        >
-          9
-        </button>
+        {% endfor %}
+
+        <!-- Operator Buttons -->
+        {% for op in site.data.operators %}
         <button
           data-action="click->calculator#inputOperator"
-          data-value="*"
-          class="bg-blue-500/80 hover:bg-blue-500 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm text-xl"
+          data-value="{{ op.value }}"
+          class="bg-gradient-to-br from-blue-500/90 to-indigo-600/90 hover:from-blue-400 hover:to-indigo-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-blue-500/20 text-xl"
         >
-          ×
+          {{ op.symbol }}
         </button>
+        {% endfor %}
 
-        <!-- Row 3 -->
-        <button
-          data-action="click->calculator#inputNumber"
-          data-value="4"
-          class="bg-white/20 hover:bg-white/30 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm"
-        >
-          4
-        </button>
-        <button
-          data-action="click->calculator#inputNumber"
-          data-value="5"
-          class="bg-white/20 hover:bg-white/30 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm"
-        >
-          5
-        </button>
-        <button
-          data-action="click->calculator#inputNumber"
-          data-value="6"
-          class="bg-white/20 hover:bg-white/30 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm"
-        >
-          6
-        </button>
-        <button
-          data-action="click->calculator#inputOperator"
-          data-value="-"
-          class="bg-blue-500/80 hover:bg-blue-500 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm text-xl"
-        >
-          −
-        </button>
-
-        <!-- Row 4 -->
-        <button
-          data-action="click->calculator#inputNumber"
-          data-value="1"
-          class="bg-white/20 hover:bg-white/30 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm"
-        >
-          1
-        </button>
-        <button
-          data-action="click->calculator#inputNumber"
-          data-value="2"
-          class="bg-white/20 hover:bg-white/30 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm"
-        >
-          2
-        </button>
-        <button
-          data-action="click->calculator#inputNumber"
-          data-value="3"
-          class="bg-white/20 hover:bg-white/30 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm"
-        >
-          3
-        </button>
-        <button
-          data-action="click->calculator#inputOperator"
-          data-value="+"
-          class="bg-blue-500/80 hover:bg-blue-500 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm text-xl"
-        >
-          +
-        </button>
-
-        <!-- Row 5 -->
+        <!-- Bottom Row -->
         <button
           data-action="click->calculator#inputNumber"
           data-value="0"
-          class="col-span-2 bg-white/20 hover:bg-white/30 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm"
+          class="col-span-2 bg-white/10 dark:bg-white/5 hover:bg-white/20 dark:hover:bg-white/10 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl text-lg"
         >
           0
         </button>
         <button
           data-action="click->calculator#inputDecimal"
-          class="bg-white/20 hover:bg-white/30 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm"
+          class="bg-white/10 dark:bg-white/5 hover:bg-white/20 dark:hover:bg-white/10 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl text-lg"
         >
           .
         </button>
         <button
           data-action="click->calculator#calculate"
-          class="bg-green-500/80 hover:bg-green-500 text-white font-medium py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm text-xl"
+          class="bg-gradient-to-br from-emerald-500/90 to-green-600/90 hover:from-emerald-400 hover:to-green-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-green-500/20 text-xl"
         >
           =
         </button>
@@ -166,8 +99,8 @@ layout: default
 
   <!-- Footer -->
   <div
-    class="text-center mt-6 text-white/60 dark:text-white/40 text-sm font-medium"
+    class="text-center mt-8 text-gray-600 dark:text-white/40 text-sm font-medium tracking-wide"
   >
-    Kalkulator dengan Stimulus.js
+    Created by <a href="https://github.com/whdzera">whdzera</a>
   </div>
 </div>

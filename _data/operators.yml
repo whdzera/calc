@@ -1,0 +1,6 @@
+- value: "*"
+  symbol: "×"
+- value: "-"
+  symbol: "−"
+- value: "+"
+  symbol: "+"
