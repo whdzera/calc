@@ -28,24 +28,29 @@ layout: default
 
       <!-- Buttons Grid -->
       <div class="grid grid-cols-4 gap-4">
-        <!-- Clear Button -->
+        <!-- Row 1: AC, ⌫, ÷ -->
         <button
           data-action="click->calculator#clear"
           class="col-span-2 cursor-pointer bg-gradient-to-br from-rose-500/90 to-red-600/90 hover:from-rose-400 hover:to-red-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-red-500/20"
         >
           AC
         </button>
-
-        <!-- Backspace Button -->
         <button
           data-action="click->calculator#backspace"
           class="cursor-pointer bg-gradient-to-br from-amber-500/90 to-orange-600/90 hover:from-amber-400 hover:to-orange-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-orange-500/20"
         >
           ⌫
         </button>
+        <button
+          data-action="click->calculator#inputOperator"
+          data-value="/"
+          class="cursor-pointer bg-gradient-to-br from-blue-500/90 to-indigo-600/90 hover:from-blue-400 hover:to-indigo-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-blue-500/20 text-xl"
+        >
+          ÷
+        </button>
 
-        <!-- Number Buttons -->
-        {% for number in (1..9) %}
+        <!-- Row 2: 7, 8, 9, × -->
+        {% for number in (7..9) %}
         <button
           data-action="click->calculator#inputNumber"
           data-value="{{ number }}"
@@ -54,40 +59,67 @@ layout: default
           {{ number }}
         </button>
         {% endfor %}
-
-        <!-- Operator Buttons -->
-        {% for op in site.data.operators %}
         <button
           data-action="click->calculator#inputOperator"
-          data-value="{{ op.value }}"
+          data-value="*"
           class="cursor-pointer bg-gradient-to-br from-blue-500/90 to-indigo-600/90 hover:from-blue-400 hover:to-indigo-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-blue-500/20 text-xl"
         >
-          {{ op.symbol }}
+          ×
+        </button>
+
+        <!-- Row 3: 4, 5, 6, - -->
+        {% for number in (4..6) %}
+        <button
+          data-action="click->calculator#inputNumber"
+          data-value="{{ number }}"
+          class="cursor-pointer bg-white/20 dark:bg-white/5 hover:bg-white/30 dark:hover:bg-white/10 text-slate-700 dark:text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl text-lg"
+        >
+          {{ number }}
         </button>
         {% endfor %}
+        <button
+          data-action="click->calculator#inputOperator"
+          data-value="-"
+          class="cursor-pointer bg-gradient-to-br from-blue-500/90 to-indigo-600/90 hover:from-blue-400 hover:to-indigo-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-blue-500/20 text-xl"
+        >
+          −
+        </button>
 
-        <!-- Bottom Row -->
-        <!-- Zero Button -->
+        <!-- Row 4: 1, 2, 3, + -->
+        {% for number in (1..3) %}
+        <button
+          data-action="click->calculator#inputNumber"
+          data-value="{{ number }}"
+          class="cursor-pointer bg-white/20 dark:bg-white/5 hover:bg-white/30 dark:hover:bg-white/10 text-slate-700 dark:text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl text-lg"
+        >
+          {{ number }}
+        </button>
+        {% endfor %}
+        <button
+          data-action="click->calculator#inputOperator"
+          data-value="+"
+          class="cursor-pointer bg-gradient-to-br from-blue-500/90 to-indigo-600/90 hover:from-blue-400 hover:to-indigo-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-blue-500/20 text-xl"
+        >
+          +
+        </button>
+
+        <!-- Row 5: 0, ., = -->
         <button
           data-action="click->calculator#inputNumber"
           data-value="0"
-          class="col-span-2 cursor-pointer bg-white/20 dark:bg-white/5 hover:bg-white/30 dark:hover:bg-white/10 text-slate-700 dark:text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl text-lg"
+          class="cursor-pointer bg-white/20 dark:bg-white/5 hover:bg-white/30 dark:hover:bg-white/10 text-slate-700 dark:text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl text-lg"
         >
           0
         </button>
-
-        <!-- Decimal Button -->
         <button
           data-action="click->calculator#inputDecimal"
           class="cursor-pointer bg-white/20 dark:bg-white/5 hover:bg-white/30 dark:hover:bg-white/10 text-slate-700 dark:text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl text-lg"
         >
           .
         </button>
-
-        <!-- Equals Button -->
         <button
           data-action="click->calculator#calculate"
-          class="cursor-pointer bg-gradient-to-br from-emerald-500/90 to-green-600/90 hover:from-emerald-400 hover:to-green-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-green-500/20 text-xl"
+          class="col-span-2 cursor-pointer bg-gradient-to-br from-emerald-500/90 to-green-600/90 hover:from-emerald-400 hover:to-green-500 text-white font-medium py-5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-xl shadow-lg shadow-green-500/20 text-xl"
         >
           =
         </button>
