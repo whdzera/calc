@@ -2,5 +2,5 @@ import { Application } from "@hotwired/stimulus";
 
 window.Stimulus = Application.start();
 
-import MessageController from "./controllers/message_controller.js";
-Stimulus.register("message", MessageController);
+import CalcController from "./controllers/calc_controller.js";
+Stimulus.register("calculator", CalcController);
